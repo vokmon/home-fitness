@@ -1,0 +1,9 @@
+.app-bar a {
+  color: white;
+  text-decoration: none;
+}
+
+li a {
+  color: black;
+  text-decoration: none;
+}

@@ -1,0 +1,11 @@
+.exercise-card {
+  transition: 0.3s all ease-in-out !important;
+}
+
+.exercise-card.clickable {
+  cursor: pointer;
+}
+
+.exercise-card.clickable:hover {
+  transform: scale(1.1, 1.1);
+}
