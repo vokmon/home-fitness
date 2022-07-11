@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@emotion/react';
 import { Box, Fade } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
-import { useGetFullbodyExerciseSessions, usePrepareAppData } from './AppHooks';
+import { usePrepareExerciseSessions, usePrepareAppData } from './AppHooks';
 import AppUiContainer from './components/app/AppUiContainer';
 import Header from './components/navigators/header/Header';
 import RouterConfiguration from './routes/RouterConfiguration';
@@ -13,7 +13,7 @@ function App() {
   const appTheme = getAppTheme(theme);
 
   usePrepareAppData();
-  useGetFullbodyExerciseSessions();
+  usePrepareExerciseSessions();
 
   return (
     <ThemeProvider theme={appTheme}>

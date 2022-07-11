@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Slider, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Slider, Stack, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAppSettingsStore } from '../../../stores/AppSettingsStore';
 import { useCancelDurationSettings, useHandleSliderChange, useSubmitExerciseDurationSettings } from './ExerciseDurationSettingsHooks';
@@ -67,30 +67,36 @@ function ExerciseDurationSettings() {
               md: '90%',
             }
           }}>
-          <Slider
-            aria-label='Exercise Duration (Minutes)'
-            value={sessionDurationValue}
-            onChange={handleSessionDurationValueChange}
-            getAriaValueText={valuetext}
-            step={5}
-            min={sessionDurations[0].value}
-            max={sessionDurations[sessionDurations.length - 1].value}
-            valueLabelDisplay='auto'
-            marks={sessionDurations}
-            color='info'
-          />
-          <Slider
-            aria-label='Specific Part Duration (Minutes)'
-            value={specificPartDurationValue}
-            onChange={handleSpecificPartDurationValueChange}
-            getAriaValueText={valuetext}
-            step={2}
-            min={specificPartDurations[0].value}
-            max={specificPartDurations[specificPartDurations.length - 1].value}
-            valueLabelDisplay='auto'
-            marks={specificPartDurations}
-            color='info'
-          />
+          <Stack width='100%' flexDirection='column'>
+            <Typography>Exercise Duration</Typography>
+            <Slider
+              aria-label='Exercise Duration (Minutes)'
+              value={sessionDurationValue}
+              onChange={handleSessionDurationValueChange}
+              getAriaValueText={valuetext}
+              step={5}
+              min={sessionDurations[0].value}
+              max={sessionDurations[sessionDurations.length - 1].value}
+              valueLabelDisplay='auto'
+              marks={sessionDurations}
+              color='info'
+            />
+          </Stack>
+          <Stack width='100%' flexDirection='column'>
+            <Typography>Specific Part Duration</Typography>
+            <Slider
+              aria-label='Specific Part Duration (Minutes)'
+              value={specificPartDurationValue}
+              onChange={handleSpecificPartDurationValueChange}
+              getAriaValueText={valuetext}
+              step={2}
+              min={specificPartDurations[0].value}
+              max={specificPartDurations[specificPartDurations.length - 1].value}
+              valueLabelDisplay='auto'
+              marks={specificPartDurations}
+              color='info'
+            />
+          </Stack>
         </Box>
         <Box display='flex' gap={2}>
           <Button ml='auto' variant='contained' color='secondary' onClick={() => {

@@ -5,4 +5,6 @@ export const DEFAULT_APP_SETTINGS = {
   specificPartDuration: 8,
   exerciseDurationInSecond: 120,
   smallBreakInSecond: 30,
+  numberOfFullBodySessions: 1,
+  numberOfBodyPartSessions: 1,
 };

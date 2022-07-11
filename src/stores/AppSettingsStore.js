@@ -28,6 +28,8 @@ let appSettingsStore = persist(
 
     exerciseDurationInSecond: DEFAULT_APP_SETTINGS.exerciseDurationInSecond,
     smallBreakInSecond: DEFAULT_APP_SETTINGS.smallBreakInSecond,
+    numberOfFullBodySessions: DEFAULT_APP_SETTINGS.numberOfFullBodySessions,
+    numberOfBodyPartSessions: DEFAULT_APP_SETTINGS.numberOfBodyPartSessions,
   }),
   {
     name: 'home-fitness-app-settings', // name of item in the storage (must be unique)

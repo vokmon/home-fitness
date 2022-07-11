@@ -1,17 +1,34 @@
-import { Box, Fade } from '@mui/material';
+import { Box, Button, Fade } from '@mui/material';
+import CachedIcon from '@mui/icons-material/Cached';
+import { useExerciseSessionStore } from '../../stores/ExerciseSessionStore';
+import { useGetExerciseSessions } from '../../AppHooks';
+import FullBodyExerciseList from './sections/FullBodyExerciseList';
+import SpecificPartsExerciseList from './sections/SpecificPartsExerciseList';
 
 function Home() {
+  const fullBodyExerciseList = useExerciseSessionStore(state => state.fullBodyExerciseList);
+  const specificExerciseList = useExerciseSessionStore(state => state.specificExerciseList);
+  console.log(fullBodyExerciseList, specificExerciseList);
+  const {
+    getExerciseSessions,
+  } = useGetExerciseSessions();
   return (
     <Fade in>
-      <Box>
-        <p>Full body mixed exercise 1</p>
-        <p>Full body mixed exercise 2</p>
-        <p>Full body mixed exercise 3</p>
-        <p>Full body exercise 1</p>
-        <p>Full body exercise 2</p>
-        <p>Full body exercise 3</p>
-        <p>Specific part - body parts</p>
-        <p>Specific part - equipments</p>
+      <Box boxSizing='border-box'>
+        <Button
+          color='secondary'
+          onClick={() => {
+            getExerciseSessions();
+          }}
+          variant='contained'
+          endIcon={<CachedIcon />}
+        >
+          Get new exercises
+        </Button>
+        <br /><br /><br />
+        <FullBodyExerciseList />
+        <br /><br />
+        <SpecificPartsExerciseList />
       </Box>
     </Fade>
   );

@@ -40,7 +40,7 @@ function Header() {
             height: {
               md: '70px',
             }
-          }}><Logo height='auto' /></Box>
+          }}><Logo style={{ height: 'auto' }} /></Box>
           <Typography
             variant='h6'
             noWrap
@@ -114,7 +114,7 @@ function Header() {
             height: {
               xs: '30px',
             }
-          }}><Logo height='auto' /></Box>
+          }}><Logo style={{ height: 'auto' }} /></Box>
           <Typography
             variant='h5'
             noWrap

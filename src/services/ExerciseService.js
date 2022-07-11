@@ -1,14 +1,11 @@
 import exerciseData from '../assets/data/exercises-template.json';
-import { DEFAULT_APP_SETTINGS } from '../constants/AppSettingConstants';
-
-const getSettings = (payload) => {
-  const result = {};
-  Object.keys((payload)).forEach((key) => {
-    result[key] = payload[key] || DEFAULT_APP_SETTINGS[key];
-  });
-
-  return result;
-};
+import {
+  getExercisesByBodyPartsAndEquipments,
+  getSettings,
+  groupObjectByField,
+  getExerciseSessions,
+  shuffle,
+} from './ExerciseServiceHelper';
 
 export const ExerciseService = {
   getAllBodyParts: async () => {
@@ -40,26 +37,60 @@ export const ExerciseService = {
   getFullbodyExerciseSessions: async (payload) => {
     const settings = getSettings(payload);
     const {
-      // bodyParts,
-      // equipments,
-      // sessionDuration,
+      bodyParts,
+      equipments,
+      sessionDuration,
       exerciseDurationInSecond,
-      smallBreakInSecond
+      smallBreakInSecond,
+      numberOfFullBodySessions,
     } = settings;
-    // console.log(settings);
-    // eslint-disable-next-line no-unused-vars
     const exerciseDurationInMinute = (exerciseDurationInSecond + smallBreakInSecond) / 60;
-    // console.log(exerciseDurationInMinute);
+    const numberOfExercises = Math.round(sessionDuration / exerciseDurationInMinute);
+    const exercisesByBodyPartsAndEquipments = getExercisesByBodyPartsAndEquipments({
+      bodyParts,
+      equipments,
+    });
+
+    const exercisesGroupByBodyParts = groupObjectByField({ list: exercisesByBodyPartsAndEquipments, fieldName: 'bodyPart' });
+    const shuffleExercisesKeys = Object.keys(exercisesGroupByBodyParts);
+
+    const fullBodyList = getExerciseSessions(
+      {
+        numberOfFullBodySessions,
+        numberOfExercises,
+        bodyParts,
+        shuffleExercisesKeys,
+        exercisesGroupByBodyParts,
+      }
+    );
+    return fullBodyList;
   },
 
   getSpecificExerciseSessions: async (payload) => {
-    // const {
-    //   bodyParts,
-    //   equipments,
-    //   specificPartDuration,
-    //   exerciseDurationInSecond,
-    //   smallBreakInSecond
-    // } = payload;
-    console.log(payload);
+    const {
+      bodyParts,
+      equipments,
+      specificPartDuration,
+      exerciseDurationInSecond,
+      smallBreakInSecond,
+      numberOfBodyPartSessions,
+    } = payload;
+    const exerciseDurationInMinute = (exerciseDurationInSecond + smallBreakInSecond) / 60;
+    const numberOfExercises = Math.round(specificPartDuration / exerciseDurationInMinute);
+
+    const result = {};
+    bodyParts.forEach((b) => {
+      result[b] = [];
+      for (let i = 0; i < numberOfBodyPartSessions; i++) {
+        const exercisesByBodyPartsAndEquipments = getExercisesByBodyPartsAndEquipments({
+          bodyParts: [b],
+          equipments,
+        });
+        const shuffleExercisesByBodyPartsAndEquipments = shuffle(exercisesByBodyPartsAndEquipments);
+        result[b].push(shuffleExercisesByBodyPartsAndEquipments.splice(0, numberOfExercises));
+      }
+    });
+
+    return result;
   },
 };
