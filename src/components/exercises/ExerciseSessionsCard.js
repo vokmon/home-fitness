@@ -19,7 +19,7 @@ function ExerciseSessionsCard({
           <Typography variant='h6' textTransform='capitalize' >{title}</Typography>
         )}
         <Button onClick={onStartSession} variant='contained' endIcon={<FitnessCenterIcon />}>
-          Start
+          Select
         </Button>
       </Stack>
       <ImageList

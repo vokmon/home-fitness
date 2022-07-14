@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Chip, Stack, Typography, Card, CardMedia, CardContent } from '@mui/material';
 import { ExerciseType } from '../../types/ExerciseType';
-import './ExerciseCard.module.css';
+import './ExerciseCard.css';
 
 const ExerciseCard = ({ exercise, onSelect, showExerciseName, ...rest }) => (
   <Card
@@ -19,13 +19,13 @@ const ExerciseCard = ({ exercise, onSelect, showExerciseName, ...rest }) => (
       image={exercise.gifUrl}
       alt={exercise.name}
     />
-    <CardContent sx={{ background: '#607d8b' }}>
+    <CardContent sx={{ bgColor: 'primary.main' }}>
       <Stack direction='row' className='chips'>
         <Chip label={exercise.bodyPart} color='bodypart' sx={{ textTransform: 'capitalize' }} />
         <Chip label={exercise.target} color='target' sx={{ textTransform: 'capitalize', ml: 2 }} />
       </Stack>
       {showExerciseName && (
-        <Typography color='white' variant='body2' mt='11px' textTransform='capitalize'>
+        <Typography color='black' variant='body2' mt='11px' textTransform='capitalize'>
           {exercise.name}
         </Typography>
       )}

@@ -3,7 +3,7 @@
 }
 
 .exercise-card.clickable {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .exercise-card.clickable:hover {

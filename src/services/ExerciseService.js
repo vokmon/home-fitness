@@ -45,7 +45,7 @@ export const ExerciseService = {
       numberOfFullBodySessions,
     } = settings;
     const exerciseDurationInMinute = (exerciseDurationInSecond + smallBreakInSecond) / 60;
-    const numberOfExercises = Math.round(sessionDuration / exerciseDurationInMinute);
+    const numberOfExercises = Math.ceil(sessionDuration / exerciseDurationInMinute);
     const exercisesByBodyPartsAndEquipments = getExercisesByBodyPartsAndEquipments({
       bodyParts,
       equipments,
@@ -76,7 +76,7 @@ export const ExerciseService = {
       numberOfBodyPartSessions,
     } = payload;
     const exerciseDurationInMinute = (exerciseDurationInSecond + smallBreakInSecond) / 60;
-    const numberOfExercises = Math.round(specificPartDuration / exerciseDurationInMinute);
+    const numberOfExercises = Math.ceil(specificPartDuration / exerciseDurationInMinute);
 
     const result = {};
     bodyParts.forEach((b) => {

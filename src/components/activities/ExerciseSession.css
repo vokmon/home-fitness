@@ -1,0 +1,11 @@
+.exercise-session .thumb, .control-dots {
+  pointer-events: none;
+}
+
+.exercise-session .thumbs-wrapper {
+  margin: 0px;
+}
+
+.exercise-session .thumbs {
+  margin-bottom: 0px;
+}

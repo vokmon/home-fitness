@@ -2,6 +2,7 @@ import { Box, Button, Fade, Stack, TextField, Typography } from '@mui/material';
 import ExerciseDetailDialog from '../../components/exercises/ExerciseDetailDialog';
 import ExercisesList from '../../components/list/ExercisesList';
 import LoadingSpinner from '../../components/loader/LoadingSpinner';
+import { useAppSettingsStore } from '../../stores/AppSettingsStore';
 import { useSearchExercises, useSelectExercise } from './SearchHooks';
 import { useSearchStore } from './SearchStore';
 
@@ -9,6 +10,8 @@ function Search() {
   const searchText = useSearchStore(state => state.searchText);
   const setSearchText = useSearchStore(state => state.setSearchText);
   const searchResult = useSearchStore(state => state.searchResult);
+  const exerciseDurationInSecond = useAppSettingsStore(state => state.exerciseDurationInSecond);
+  const smallBreakInSecond = useAppSettingsStore(state => state.smallBreakInSecond);
 
   const { searchText: searchResultSearchText, exerciseList } = searchResult;
   const {
@@ -109,6 +112,9 @@ function Search() {
         open={open}
         exercise={selectedExercise}
         onClose={closeExerciseDialog}
+        exerciseDurationInSecond={exerciseDurationInSecond}
+        smallBreakInSecond={smallBreakInSecond}
+        fullWidth
       />
     </>
   );

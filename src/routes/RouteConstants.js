@@ -1,13 +1,15 @@
 export const URL = {
   DEFAULT_URL: '/',
-  HOME_URL: '/home',
+  SESSION_URL: '/session',
   SEARCH_URL: '/search',
   SETTINGS_URL: '/settings',
+  FULL_BODY_PLAY: '/exercises/full-body-sessions/:sessionId',
+  SPECIFIC_PART_PLAY: '/exercises/specific-part-sessions/:bodyPart/:sessionId',
 };
 
 export const PAGES = [{
-  label: 'Home',
-  to: URL.HOME_URL,
+  label: 'Session',
+  to: URL.SESSION_URL,
 },
 {
   label: 'Search',

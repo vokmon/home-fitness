@@ -1,10 +1,13 @@
 import { Accordion, AccordionDetails, AccordionSummary, Stack, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useNavigate } from 'react-router-dom';
 import { useExerciseSessionStore } from '../../../stores/ExerciseSessionStore';
 import ExerciseSessionsCard from '../../../components/exercises/ExerciseSessionsCard';
+import { URL } from '../../../routes/RouteConstants';
 
 function SpecificPartsExerciseList() {
   const specificExerciseList = useExerciseSessionStore(state => state.specificExerciseList);
+  const navigate = useNavigate();
 
   if (!specificExerciseList || Object.keys(specificExerciseList).length === 0) {
     return null;
@@ -30,6 +33,9 @@ function SpecificPartsExerciseList() {
                     key={`specific-part-exercise-${key}-${exIndex}`}
                     title={specificExerciseList[key].length > 1 ? `${key} ${exIndex + 1}` : key}
                     exerciseList={exerciseList}
+                    onStartSession={() => {
+                      navigate(URL.SPECIFIC_PART_PLAY.replace(':bodyPart', key).replace(':sessionId', exIndex));
+                    }}
                   />
                 ))}
               </Stack>

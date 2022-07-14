@@ -6,11 +6,11 @@ export const getAppTheme = ({ themePrimary, themeSecondary }) => (
       primary: themePrimary,
       secondary: themeSecondary,
       bodypart: {
-        main: '#FFA9A9',
+        main: '#5359cc',
         contrastText: '#fff',
       },
       target: {
-        main: '#FCC757',
+        main: '#856624',
         contrastText: '#fff',
       }
     },

@@ -1,20 +1,24 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Home from '../pages/home/Home';
+import Session from '../pages/session/Session';
 import Search from '../pages/search/Search';
+import FullBodySessionPlay from '../pages/session-play/FullBodySessionPlay';
 import Settings from '../pages/settings/Settings';
+import SpecificPartSessionPlay from '../pages/session-play/SpecificPartSessionPlay';
 import { URL } from './RouteConstants';
 
 function RouterConfiguration() {
   return (
     <Routes>
-      <Route path={URL.DEFAULT_URL} element={<Home />} />
-      <Route path={URL.HOME_URL} element={<Home />} />
+      <Route path={URL.DEFAULT_URL} element={<Search />} />
+      <Route path={URL.SESSION_URL} element={<Session />} />
       <Route path={URL.SEARCH_URL} element={<Search />} />
       <Route path={URL.SETTINGS_URL} element={<Settings />} />
+      <Route path={URL.FULL_BODY_PLAY} element={<FullBodySessionPlay />} />
+      <Route path={URL.SPECIFIC_PART_PLAY} element={<SpecificPartSessionPlay />} />
       <Route
         path='*'
         caseSensitive={false}
-        element={<Navigate to={URL.HOME_URL} replace />}
+        element={<Navigate to={URL.SEARCH_URL} replace />}
       />
     </Routes>
   );
