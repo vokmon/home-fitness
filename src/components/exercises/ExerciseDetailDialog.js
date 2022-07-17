@@ -23,7 +23,7 @@ function ExerciseDetailDialog({
       }}
     >
       <DialogTitle sx={{ textTransform: 'capitalize' }}>{exercise.name}</DialogTitle>
-      <DialogContent>
+      <DialogContent sx={{ height: '540px' }}>
         <ExerciseSession
           exerciseList={[exercise]}
           exerciseDurationInSecond={exerciseDurationInSecond}
