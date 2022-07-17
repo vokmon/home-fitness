@@ -54,7 +54,7 @@ function ExerciseSession({
 
   if (isCompleted) {
     return (
-      <ExerciseComplete />
+      <ExerciseComplete exerciseDurationInSecond={exerciseDurationInSecond} />
     );
   }
   return (
