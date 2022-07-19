@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
+import { usePlaySound } from '../../hooks/SoundHooks';
 
 export const usePrepareExerciseSessionList = ({
   exerciseList
@@ -62,6 +63,9 @@ export const useHandleCountdownDate = ({
   const [countdownDate, setCountdownDate] = useState(Date.now() + 5000);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showTime, setShowTime] = useState(false);
+  const { getCountdownSound } = usePlaySound();
+  const countdownSound = getCountdownSound();
+
   const startExercise = () => {
     setIsPlaying(true);
     setShowTime(true);
@@ -70,6 +74,7 @@ export const useHandleCountdownDate = ({
 
   const pauseExercise = () => {
     setIsPlaying(false);
+    countdownSound.pause();
     countdownRef.current.pause();
   };
 
@@ -91,7 +96,12 @@ export const useHandleCountdownDate = ({
         countdownRef.current.start();
       });
     }
+  };
 
+  const handleOnTick = (tick) => {
+    if (tick.total === 4000) {
+      countdownSound.play({ start: 0, volume: 0.3 });
+    }
   };
 
   return {
@@ -102,6 +112,7 @@ export const useHandleCountdownDate = ({
     startExercise,
     pauseExercise,
     handleOnComplete,
+    handleOnTick,
     isInitial,
   };
 };

@@ -43,6 +43,7 @@ function ExerciseSession({
     startExercise,
     pauseExercise,
     handleOnComplete,
+    handleOnTick,
     isInitial,
   } = useHandleCountdownDate({
     exerciseDurationInSecond,
@@ -93,6 +94,7 @@ function ExerciseSession({
           date={countdownDate}
           showTime={showTime}
           onComplete={handleOnComplete}
+          onTick={handleOnTick}
         />
       </Stack>
       <Box flexGrow={1}>
@@ -107,7 +109,7 @@ function ExerciseSession({
           ref={carouselRef}
           selectedItem={currentSlide}
         >
-          {transformExerciseList.map((ex) => {
+          {transformExerciseList.map((ex, index) => {
             const sx = {
               marginLeft: 'auto',
               marginRight: 'auto',
@@ -121,7 +123,16 @@ function ExerciseSession({
               // For some reason this cannot be refacted to another component
               // as the thumbnail will not work
               return (
-                <Box key={ex.id} sx={sx}>
+                <Box key={ex.id} sx={{
+                  ...sx,
+                  display: 'flex',
+                  flexDirection: {
+                    xs: 'column',
+                    lg: 'row',
+                  },
+                  gap: 2,
+                  alignItem: 'center'
+                }}>
                   <img
                     src={take_a_break}
                     srcSet={take_a_break}
@@ -130,6 +141,24 @@ function ExerciseSession({
                       width: '100%',
                     }}
                   />
+
+                  <Box sx={{
+                    // position: 'absolute'
+                  }}>
+                    <Typography>
+                      Next
+                    </Typography>
+                    <img
+                      src={transformExerciseList[index + 1].gifUrl}
+                      srcSet={transformExerciseList[index + 1].gifUrl}
+                      loading='lazy'
+                      style={{
+                        width: '200px',
+                        marginBottom: '70px',
+                      }}
+                    />
+                  </Box>
+
                   <Typography
                     className='legend'>
                     Take a {smallBreakInSecond}-second break

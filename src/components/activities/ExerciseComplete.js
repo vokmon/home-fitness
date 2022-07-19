@@ -13,12 +13,15 @@ function ExerciseComplete({
   exerciseDurationInSecond,
 }) {
   const [imgUrl, setImgUrl] = useState(null);
+
   const getRandomImage = async () => {
     const random = getRandomInt(1, 11);
     const imageUrl = await import(`../../assets/images/quotes/${random}.jpeg`);
     setImgUrl(imageUrl.default);
   };
 
+  
+  
   useEffect(() => {
     getRandomImage();
   }, []);

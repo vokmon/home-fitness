@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { usePrepareExerciseSessions, usePrepareAppData } from './AppHooks';
 import AppUiContainer from './components/app/AppUiContainer';
 import Header from './components/navigators/header/Header';
+import { useInitialSounds } from './hooks/SoundHooks';
 import RouterConfiguration from './routes/RouterConfiguration';
 import { useAppSettingsStore } from './stores/AppSettingsStore';
 import { getAppTheme } from './theme/materialUITheme';
@@ -14,6 +15,7 @@ function App() {
 
   usePrepareAppData();
   usePrepareExerciseSessions();
+  useInitialSounds();
 
   return (
     <ThemeProvider theme={appTheme}>
